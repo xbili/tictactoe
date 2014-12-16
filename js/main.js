@@ -4,6 +4,8 @@ App.turn = 'O';
 
 App.unit = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
+App.turnCount = 0;
+
 App.changeTurn = function() {
 	if (App.turn == 'O') {
 		App.turn = 'X';
@@ -49,6 +51,7 @@ App.hoverOverUnit = function() {
 
 App.reset = function() {
 	App.winStatus = false;
+	App.turnCount = 0;
 	$('td').empty();
 
 	for (var i = 0; i < App.unit.length; i++) {
@@ -60,6 +63,16 @@ App.reset = function() {
 	});
 }
 
+App.checkDraw = function() {
+	if (App.winStatus === true) {
+		return false;
+	} else if (App.turnCount === 9) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
 App.onClickUnit = function() {
 	$('td').click(function() {
 		var el = this;
@@ -69,9 +82,17 @@ App.onClickUnit = function() {
 		$(this).html(App.turn).hide().fadeIn();
 		App.unit[this.id - 1] = App.turn;
 		App.winStatus = App.checkWin();
+		App.turnCount += 1;
 
 		if(App.winStatus) {
 			$('.alert').html('<p class="lead text-center">' + App.turn + ' won!</p>').fadeIn();
+			$('.alert').append('<p class="lead text-center reset "><em>Reset game?</em></p>').fadeIn();
+			$('.tttable').fadeOut(1);
+			$('.reset').click(function() {
+				App.reset();
+			});
+		} else if (App.checkDraw()) {
+			$('.alert').html('<p class="lead text-center">It\'s a draw!</p>').fadeIn();
 			$('.alert').append('<p class="lead text-center reset "><em>Reset game?</em></p>').fadeIn();
 			$('.tttable').fadeOut(1);
 			$('.reset').click(function() {
