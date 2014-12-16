@@ -47,7 +47,6 @@ App.hoverOverUnit = function() {
 	});
 };
 
-<<<<<<< HEAD
 App.reset = function() {
 	App.winStatus = false;
 	$('td').empty();
@@ -61,8 +60,6 @@ App.reset = function() {
 	});
 }
 
-=======
->>>>>>> origin/master
 App.onClickUnit = function() {
 	$('td').click(function() {
 		var el = this;
@@ -72,7 +69,7 @@ App.onClickUnit = function() {
 		$(this).html(App.turn).hide().fadeIn();
 		App.unit[this.id - 1] = App.turn;
 		App.winStatus = App.checkWin();
-<<<<<<< HEAD
+
 		if(App.winStatus) {
 			$('.alert').html('<p class="lead text-center">' + App.turn + ' won!</p>').fadeIn();
 			$('.alert').append('<p class="lead text-center reset "><em>Reset game?</em></p>').fadeIn();
@@ -80,14 +77,8 @@ App.onClickUnit = function() {
 			$('.reset').click(function() {
 				App.reset();
 			});
-=======
-		console.log(App.winStatus);
-		if(App.winStatus) {
-			console.log(App.turn + ' won!');
-			$('.alert').append('<p class="lead text-center">' + App.turn + ' won!</p>').fadeIn();
-			$('.tttable').fadeOut(1);
->>>>>>> origin/master
 		}
+
 		App.changeTurn();
 		$('.turn h2').html('<h2 class="lead">Turn: ' + App.turn + '</h2>');
 	});
