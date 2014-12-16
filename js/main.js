@@ -77,11 +77,8 @@ App.onClickUnit = function() {
 			$('.reset').click(function() {
 				App.reset();
 			});
-		if(App.winStatus) {
-			console.log(App.turn + ' won!');
-			$('.alert').append('<p class="lead text-center">' + App.turn + ' won!</p>').fadeIn();
-			$('.tttable').fadeOut(1);
 		}
+
 		App.changeTurn();
 		$('.turn h2').html('<h2 class="lead">Turn: ' + App.turn + '</h2>');
 	});
